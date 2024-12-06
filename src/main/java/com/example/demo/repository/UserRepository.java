@@ -2,6 +2,8 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.user.UserEntity;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +18,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
 
-
+    Page<UserEntity> findByUserName(String userName, Pageable pageable);
 
     UserEntity findByUserNameAndUserEmail(String userName, String userEmail);
 
@@ -35,7 +37,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpec
     /*
      * WHERE userName LIKE %?%
      */
-    List<UserEntity> findByUserNameContaining(String userName);
+    Page<UserEntity> findByUserNameContaining(String userName, Pageable pageable);
 
     List<UserEntity> findByIdLessThan(Long id);
 
