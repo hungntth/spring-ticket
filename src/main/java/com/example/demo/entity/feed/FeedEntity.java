@@ -11,7 +11,6 @@ public class FeedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "feedId", nullable = false)
     private Long id;
 
     @Column(nullable = false, length = 255)
